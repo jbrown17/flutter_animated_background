@@ -297,7 +297,12 @@ abstract class ParticleBehaviour extends Behaviour {
     if (particles == null) return false;
 
     for (Particle particle in particles) {
-      if (!size.contains(Offset(particle.cx, particle.cy))) {
+      double diameter = particle.radius * 2;
+      if (particle.cx > (size.width + diameter) ||
+          particle.cx < -diameter ||
+          particle.cy > (size.height + diameter) ||
+          particle.cy < -diameter) {
+
         initParticle(particle);
         continue;
       }
